@@ -31,6 +31,12 @@ import { SeedModule } from './seed/seed.module';
           categoryLoader: categoryLoader.createLoader(),
         }),
         autoTransformHttpErrors: true,
+        formatError: (error) => {
+          return {
+            message: error.message,
+            code: error.extensions?.code,
+          };
+        },
       }),
       inject: [CategoryLoader],
       imports: [CategoryModule],
